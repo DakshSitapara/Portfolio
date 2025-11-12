@@ -10,17 +10,16 @@ import { Highlighter } from './ui/highlighter'
 
 export default function Home() {
   return (
-    <section className="relative flex items-center justify-center min-h-screen px-4 bg-background overflow-hidden">
-
+    <section className="relative flex flex-col justify-center items-center min-h-[90vh] sm:min-h-screen px-4 sm:px-8 bg-background overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-gradient-radial from-transparent to-blue-50 dark:to-gray-900" />
       <Meteors number={30} />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start justify-between max-w-screen-2xl w-full gap-8">
-
-        <div className="flex-1 order-1 md:order-1 text-center md:text-left space-y-6">
-          <div className="flex flex-col items-center md:items-start max-w-3xl mx-auto px-4 space-y-6">
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-12 md:gap-16">
+        <div className="flex-1 text-center md:text-left space-y-6">
+          <div className="flex flex-col items-center md:items-start mx-auto max-w-2xl space-y-6">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-foreground">
               <TypingAnimation>
-                Hi, I’m Daksh Sitapara 👋
+                Hi, I’m Daksh Sitapara
               </TypingAnimation>
             </h1>
 
@@ -52,7 +51,7 @@ export default function Home() {
               .
             </p>
 
-            <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-4">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-6">
               <Link href="#projects">
                 <Button size="lg" className="font-medium">
                   View My Work <ArrowRight className="ml-2 h-5 w-5" />
@@ -67,14 +66,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex-1 flex justify-center md:justify-end order-2 md:order-2 mb-8 md:mb-0">
-          <Cloud />
+        <div className="flex-1 flex justify-center md:justify-end mt-10 md:mt-0">
+          <div className="w-64 sm:w-80 md:w-[420px]">
+            <Cloud />
+          </div>
         </div>
-
       </div>
-
-      <div className="absolute inset-0 -z-10 bg-gradient-radial from-transparent to-blue-50 dark:to-gray-900" />
-
     </section>
   )
 }

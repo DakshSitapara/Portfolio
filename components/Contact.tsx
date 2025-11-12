@@ -35,37 +35,41 @@ export default function ContactCard() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="p-4 sm:p-6 flex flex-col gap-4 items-center">
+        <CardContent className="p-6 flex justify-center gap-4">
           <Button
             asChild
-            variant="outline"
-            className="w-full flex items-center justify-center gap-2 sm:gap-3 hover:scale-105 transition-transform duration-200"
+            variant="ghost"
+            size="icon"
+            className="rounded-full border shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110"
           >
-            <Link href="mailto:dakshsitapara@gmail.com">
-              <Mail className="w-5 h-5 sm:w-6 sm:h-6" /> Email Me
+            <Link href="mailto:dakshsitapara@gmail.com" aria-label="Email">
+              <Mail className="w-6 h-6" />
             </Link>
           </Button>
 
           <Button
             asChild
-            variant="outline"
-            className="w-full flex items-center justify-center gap-2 sm:gap-3 hover:scale-105 transition-transform duration-200"
+            variant="ghost"
+            size="icon"
+            className="rounded-full border shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110"
           >
-            <a href="https://linkedin.com/in/dakshsitapara" target="_blank">
-              <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" /> LinkedIn
+            <a href="https://linkedin.com/in/dakshsitapara" target="_blank" aria-label="LinkedIn">
+              <Linkedin className="w-6 h-6" />
             </a>
           </Button>
 
           <Button
             asChild
-            variant="outline"
-            className="w-full flex items-center justify-center gap-2 sm:gap-3 hover:scale-105 transition-transform duration-200"
+            variant="ghost"
+            size="icon"
+            className="rounded-full border shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110"
           >
-            <a href="https://github.com/dakshsitapara" target="_blank">
-              <Github className="w-5 h-5 sm:w-6 sm:h-6" /> GitHub
+            <a href="https://github.com/dakshsitapara" target="_blank" aria-label="GitHub">
+              <Github className="w-6 h-6" />
             </a>
           </Button>
         </CardContent>
+
 
         <BorderBeam
           duration={6}

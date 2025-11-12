@@ -58,13 +58,11 @@ export { projects }
 
 
 const slugs = [
-    'nextjs',
     'react',
     'typescript',
     'tailwindcss',
     'shadcnui',
     'reactquery',
-    'zustand',
     'reacthookform',
     'vercel',
     'github',
@@ -74,13 +72,13 @@ const slugs = [
     'axios',
     'git',
     'html5',
-    'css3',
     'javascript',
-    'nodejs',
     'mongodb',
     'express',
-    'nextauth',
     'redux',
+    'nextdotjs',
+    'nodedotjs',
+    'css',
 ]
 
   const images = slugs.map(

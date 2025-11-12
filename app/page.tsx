@@ -14,9 +14,9 @@ export default function Page() {
       <ScrollProgress />
 
       <main className="flex-1">
-        <section id="home" className="scroll-mt-20">
-          <Home />
-        </section>
+      <section id="home" className="scroll-mt-20 pt-20 md:pt-24">
+        <Home />
+      </section>
 
         <section id="projects" className="scroll-mt-20">
           <Projects />
