@@ -9,7 +9,7 @@ import {
   CardDescription,
 } from '@/components/ui/card'
 import { projects } from '@/data/data'
-import Image from "next/image"
+import { LinkImage } from '../components/LinkImage'
 import { Marquee } from '@/components/ui/marquee'
 
 export default function Projects() {
@@ -23,36 +23,39 @@ export default function Projects() {
             <Card key={project.id} className="w-auto flex shrink-0 shadow-lg">
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
+                  <CardDescription>
+                    <span className="text-muted-foreground text-sm line-clamp-1 hover:line-clamp-none">
+                      {project.description}
+                    </span>
+                  </CardDescription>
               </CardHeader>
 
               <CardContent className="p-2">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={400}
+                <LinkImage
+                  url={project.demoLink}
+                  width={500}
                   height={300}
-                  className="w-full h-48 object-cover rounded-md"
+                  isStatic={false}
                 />
               </CardContent>
 
-              <div className="flex flex-wrap gap-2 mb-4 px-4 mt-2">
+              <div className="flex flex-wrap gap-3 mb-4 px-4 mt-2">
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-1 text-xs bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-200 rounded-md"
+                    className="px-4 py-2 text-xs font-semibold bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-200 rounded-full shadow-sm hover:shadow-md transition duration-300 ease-in-out"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <CardFooter className="mt-2 flex space-x-4 px-4 pb-2">
+              <CardFooter className="mt-4 flex justify-between px-4 pb-4">
                 <a
                   href={project.demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline text-sm"
+                  className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200 transition duration-300"
                 >
                   Live Demo
                 </a>
@@ -60,16 +63,16 @@ export default function Projects() {
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline text-sm"
+                  className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200 transition duration-300"
                 >
                   GitHub
                 </a>
               </CardFooter>
+
             </Card>
           ))}
         </Marquee>
 
-        {/* Optional gradient overlays */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-linear-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-linear-to-l from-background"></div>
       </div>
