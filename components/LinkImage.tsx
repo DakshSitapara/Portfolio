@@ -67,6 +67,7 @@ export const LinkImage = ({
         layout={layout}
         quality={quality}
         loading="lazy" 
+        unoptimized={true}
       />
     </div>
   );
