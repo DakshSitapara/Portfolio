@@ -10,10 +10,8 @@ import { Highlighter } from './ui/highlighter'
 
 export default function Home() {
   return (
-    <section className="relative flex flex-col justify-center items-center min-h-[90vh] sm:min-h-screen px-4 sm:px-8 bg-background overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-radial from-transparent to-blue-50 dark:to-gray-900" />
+    <section className="relative flex flex-col justify-center items-center min-h-[90vh] sm:min-h-[75vh] px-4 sm:px-8 bg-transparent overflow-hidden">      
       <Meteors number={30} />
-
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-12 md:gap-16">
         <div className="flex-1 text-center md:text-left space-y-6">
           <div className="flex flex-col items-center md:items-start mx-auto max-w-2xl space-y-6">
