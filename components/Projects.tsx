@@ -2,15 +2,14 @@
 
 import { 
   Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
   CardContent,
-  CardDescription,
 } from '@/components/ui/card'
 import { projects } from '@/data/data'
 import { LinkImage } from '../components/LinkImage'
 import { Marquee } from '@/components/ui/marquee'
+import Link from 'next/link'
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { ExternalLinkIcon, Github, } from 'lucide-react'
 
 export default function Projects() {
   return (
@@ -20,54 +19,56 @@ export default function Projects() {
       <div className="relative w-full overflow-hidden">
         <Marquee pauseOnHover>
           {projects.map((project) => (
-            <Card key={project.id} className="w-auto flex shrink-0 shadow-lg">
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>
-                    <span className="text-muted-foreground text-sm line-clamp-1 hover:line-clamp-none">
-                      {project.description}
-                    </span>
-                  </CardDescription>
-              </CardHeader>
+            <Card key={project.id} className="w-auto flex shrink-0 shadow-lg p-0 transform transition-transform duration-300 hover:scale-105 hover:z-10">
 
-              <CardContent className="p-2">
+              <CardContent className="relative p-0 shadow-none">
                 <LinkImage
                   url={project.demoLink}
-                  width={500}
-                  height={300}
+                  width={550}
+                  height={325}
                   isStatic={false}
+                  className="w-full h-auto rounded-md"
                 />
+
+                <span className="absolute top-3 left-3 z-10 text-sm font-semibold text-white bg-black/40 backdrop-blur-sm px-3 py-1 rounded-md shadow-md">
+                  {project.title}
+                </span>
+
+                <div className="absolute bottom-3 left-0 right-0 flex justify-between px-4 z-10">
+                  <HoverBorderGradient
+                        title='Live Demo' 
+                        containerClassName="rounded-full"
+                        as="button"
+                        className="dark:bg-black bg-white text-black dark:text-white flex items-center"
+                  >
+                    <Link
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLinkIcon size={20} />
+                  </Link>
+                  </HoverBorderGradient>
+
+                  <HoverBorderGradient
+                        title='Github' 
+                        containerClassName="rounded-full"
+                        as="button"
+                        className="dark:bg-black bg-white text-black dark:text-white flex items-center"
+                  >
+                    <Link
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github size={20} />
+                  </Link>
+                  </HoverBorderGradient>
+
+                </div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent rounded-md pointer-events-none"></div>
               </CardContent>
 
-              <div className="flex flex-wrap gap-3 mb-4 px-4 mt-2">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 text-xs font-semibold bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-200 rounded-full shadow-sm hover:shadow-md transition duration-300 ease-in-out"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <CardFooter className="mt-4 flex justify-between px-4 pb-4">
-                <a
-                  href={project.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200 transition duration-300"
-                >
-                  Live Demo
-                </a>
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200 transition duration-300"
-                >
-                  GitHub
-                </a>
-              </CardFooter>
 
             </Card>
           ))}
