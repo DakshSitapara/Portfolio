@@ -4,7 +4,7 @@ const projects = [
     title: 'Portfolio Website',
     description: 'Built with Next.js, TypeScript, and Tailwind CSS. Includes dark mode and animations.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    demoLink: 'https://portfolio-five-nu-ikvwcqj9lw.vercel.app/',
+    demoLink: 'https://daksh-sitapara-portfolio.vercel.app/',
     githubLink: 'https://github.com/DakshSitapara/Portfolio'
   },
   {
