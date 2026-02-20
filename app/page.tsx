@@ -6,7 +6,6 @@ import About from '@/components/About'
 import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
 import {ScrollProgress} from '@/components/ui/scroll-progress'
-import { WarpBackground } from '@/components/ui/warp-background'
 
 export default function Page() {
   return (
@@ -14,27 +13,7 @@ export default function Page() {
       <Navbar />
       <ScrollProgress />
 
-        <main className="hidden md:block flex-1">
-          <WarpBackground>
-            <section id="home" className="scroll-mt-20 pt-20 md:pt-24">
-              <Home />
-            </section>
-
-            <section id="projects" className="scroll-mt-20">
-              <Projects />
-            </section>
-            
-            <section id="about" className="scroll-mt-20">
-              <About />
-            </section>
-
-            <section id="contact" className="scroll-mt-20">
-              <Contact />
-            </section>
-          </WarpBackground>
-        </main>
-
-        <main className="block md:hidden flex-1">
+        <main className="flex-1">
           <section id="home" className="scroll-mt-20 pt-20 md:pt-24">
             <Home />
           </section>

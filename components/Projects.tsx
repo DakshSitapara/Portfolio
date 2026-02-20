@@ -1,17 +1,20 @@
-'use client'
+"use client";
 
-import { 
-  Card,
-  CardContent,
-} from '@/components/ui/card'
-import { projects } from '@/data/data'
-import { LinkImage } from '../components/LinkImage'
-import { Marquee } from '@/components/ui/marquee'
-import Link from 'next/link'
-import { HoverBorderGradient } from "./ui/hover-border-gradient"
-import { ExternalLinkIcon, Github } from 'lucide-react'
+import { Card, CardContent } from "@/components/ui/card";
+import { LinkImage } from "../components/LinkImage";
+import { Marquee } from "@/components/ui/marquee";
+import Link from "next/link";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { ExternalLinkIcon, Github } from "lucide-react";
+import { useGetProjects } from "@/app/(auth)/dashboard/hooks/projects";
 
 export default function Projects() {
+  const projects = useGetProjects();
+
+  if (!projects) {
+    return null;
+  }
+
   return (
     <section className="w-full mx-auto px-4 py-12 md:py-16">
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12">
@@ -22,7 +25,7 @@ export default function Projects() {
         <Marquee pauseOnHover>
           {projects.map((project) => (
             <Card
-              key={project.id}
+              key={project._id}
               className="flex shrink-0 shadow-lg p-0 transform transition-transform duration-300 hover:scale-[1.03] hover:z-10 w-[85vw] sm:w-[60vw] md:w-[40vw] lg:w-[550px]"
             >
               <CardContent className="relative p-0 shadow-none">
@@ -35,7 +38,7 @@ export default function Projects() {
                 />
 
                 <span className="absolute top-3 left-3 z-10 text-xs sm:text-sm font-semibold text-white bg-black/40 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-md shadow-md">
-                  {project.title}
+                  {project.name}
                 </span>
 
                 <div className="absolute bottom-3 left-0 right-0 flex justify-between px-3 sm:px-4 z-10">
@@ -80,5 +83,5 @@ export default function Projects() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-linear-to-l from-background hidden sm:block"></div>
       </div>
     </section>
-  )
+  );
 }

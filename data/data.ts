@@ -49,14 +49,6 @@ const projects = [
   },
   {
     id: 7,
-    title: 'Portfolio Website',
-    description: 'Built with Next.js, TypeScript, and Tailwind CSS. Includes dark mode and animations.',
-    tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    demoLink: 'https://daksh-sitapara-portfolio.vercel.app/',
-    githubLink: 'https://github.com/DakshSitapara/Portfolio'
-  },
-  {
-    id: 8,
     title: 'N8N Clone',
     description: 'Built with Next.js, TypeScript, and Tailwind CSS. Includes dark mode and animations.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
@@ -64,7 +56,7 @@ const projects = [
     githubLink: 'https://github.com/DakshSitapara/n8n-clone'
   },
   {
-    id: 9,
+    id: 8,
     title: 'Cursor Clone',
     description: 'Built with Next.js, TypeScript, and Tailwind CSS. Includes dark mode and animations.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
@@ -72,7 +64,7 @@ const projects = [
     githubLink: 'https://github.com/DakshSitapara/cursor-clone'
   },
   {
-    id: 10,
+    id: 9,
     title: 'Notion Clone',
     description: 'Built with Next.js, TypeScript, and Tailwind CSS. Includes dark mode and animations.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
