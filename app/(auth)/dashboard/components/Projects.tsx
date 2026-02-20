@@ -7,32 +7,72 @@ import { ViewProjects } from "./view-projects";
 import { useGetProjects } from "../hooks/projects";
 import { Plus } from "lucide-react";
 import { Doc } from "@/convex/_generated/dataModel";
+import { Spinner } from "@/components/ui/spinner";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { FolderCode } from "lucide-react";
+
+const LoadingState = () => {
+  return (
+    <div className="flex flex-col items-center justify-center text-center">
+      <Spinner className="mb-4 size-8" />
+      <p className="text-lg text-muted-foreground">Loading projects...</p>
+    </div>
+  );
+};
+
+const EmptyState = ({ onCreate }: { onCreate: () => void }) => {
+  return (
+    <Empty>
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <FolderCode />
+        </EmptyMedia>
+        <EmptyTitle>No Projects Yet</EmptyTitle>
+        <EmptyDescription>
+          You haven&apos;t created any projects yet. Get started by creating
+          your first project.
+        </EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent className="flex-row justify-center gap-2">
+        <Button onClick={onCreate} className="gap-2">
+          <Plus size={16} />
+          Create First Project
+        </Button>
+      </EmptyContent>
+    </Empty>
+  );
+};
 
 export const Projects = () => {
-  const [open, setOpen] = useState(false);
-
-  const [project, setProject] = useState<Doc<"projects"> | undefined>(undefined);
   const projects = useGetProjects();
 
+  const [open, setOpen] = useState(false);
+
+  const [project, setProject] = useState<Doc<"projects"> | undefined>(
+    undefined,
+  );
   const handleCreate = () => {
     setProject(undefined);
     setOpen(true);
   };
 
-  const handleEdit = ( project: Doc<"projects">) => {
+  const handleEdit = (project: Doc<"projects">) => {
     setProject(project);
     setOpen(true);
   };
 
   return (
     <>
-      <ProjectDialog
-        open={open}
-        setOpen={setOpen}
-        project={project}
-      />
+      <ProjectDialog open={open} setOpen={setOpen} project={project} />
 
-      <section className="min-h-screen px-6 py-20 bg-background">
+      <section className="min-h-auto px-6 bg-background">
         <div className="w-auto mx-auto space-y-12">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
@@ -48,16 +88,13 @@ export const Projects = () => {
             </Button>
           </div>
 
-          {!projects?.length ? (
-            <div className="flex flex-col items-center justify-center border border-dashed rounded-2xl p-16 text-center bg-muted/30 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold">No projects yet</h3>
-              <p className="text-muted-foreground mt-2 mb-6">
-                Start building your portfolio by adding your first project.
-              </p>
-              <Button onClick={handleCreate} className="gap-2">
-                <Plus size={16} />
-                Create First Project
-              </Button>
+          {projects === undefined ? (
+            <div className="min-h-[50vh] flex items-center justify-center">
+              <LoadingState />
+            </div>
+          ) : projects.length === 0 ? (
+            <div className="min-h-[50vh] flex items-center justify-center">
+              <EmptyState onCreate={handleCreate} />
             </div>
           ) : (
             <ViewProjects onEdit={handleEdit} />
