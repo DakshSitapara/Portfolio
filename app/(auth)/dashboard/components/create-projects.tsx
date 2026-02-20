@@ -35,25 +35,37 @@ export const ProjectDialog = ({
     githubLink: "",
   });
 
+  const isEmpty = !form.name || !form.demoLink || !form.githubLink;
+
+  const isChanged = isEditMode
+    ? form.name !== project?.name ||
+      form.demoLink !== project?.demoLink ||
+      form.githubLink !== project?.githubLink
+    : true;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (isEditMode && project) {
-      await updateProject({
-        id: project._id,
-        ...form,
+    try {
+      if (isEditMode && project) {
+        await updateProject({
+          id: project._id,
+          ...form,
+        });
+      } else {
+        await createProject(form);
+      }
+
+      setOpen(false);
+
+      setForm({
+        name: "",
+        demoLink: "",
+        githubLink: "",
       });
-    } else {
-      await createProject(form);
+    } catch (error) {
+      console.error(error);
     }
-
-    setOpen(false);
-
-    setForm({
-      name: "",
-      demoLink: "",
-      githubLink: "",
-    });
   };
 
   useEffect(() => {
@@ -110,7 +122,12 @@ export const ProjectDialog = ({
               Cancel
             </Button>
 
-            <Button type="submit">{isEditMode ? "Update" : "Create"}</Button>
+            <Button
+              type="submit"
+              disabled={isEmpty || (isEditMode && !isChanged)}
+            >
+              {isEditMode ? "Update" : "Create"}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

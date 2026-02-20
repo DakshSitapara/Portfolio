@@ -10,10 +10,8 @@ export const useCreateProject = () => {
 
   const createProject = async (data: {
     name: string;
-    description?: string;
     demoLink: string;
     githubLink: string;
-    image?: string;
   }) => {
     try {
       await mutation(data);
@@ -54,10 +52,8 @@ export const useUpdateProject = () => {
   const updateProject = async (data: {
     id: Id<"projects">;
     name: string;
-    description?: string;
     demoLink: string;
     githubLink: string;
-    image?: string;
   }) => {
     try {
       await mutation(data);

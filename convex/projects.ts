@@ -18,6 +18,21 @@ export const createProject = mutation({
       throw new Error("Only admin can create project");
     }
 
+    const existingProject = await ctx.db
+      .query("projects")
+      .filter((q) =>
+        q.and(
+          q.eq(q.field("name"), args.name),
+          q.eq(q.field("demoLink"), args.demoLink),
+          q.eq(q.field("githubLink"), args.githubLink),
+        ),
+      )
+      .first();
+
+    if (existingProject) {
+      throw new Error("Project already exists");
+    }
+
     return await ctx.db.insert("projects", {
       ...args,
       updatedAt: Date.now(),
@@ -57,6 +72,24 @@ export const updateProject = mutation({
 
     if (!identity || identity.subject !== process.env.ADMIN_USER_ID) {
       throw new Error("Unauthorized");
+    }
+
+    if (!args.name || !args.demoLink || !args.githubLink) {
+      throw new Error("All fields are required");
+    }
+    const existingProject = await ctx.db.get(args.id);
+
+    if (!existingProject) {
+      throw new Error("Project not found");
+    }
+
+    const isUnchanged =
+      existingProject.name === args.name &&
+      existingProject.demoLink === args.demoLink &&
+      existingProject.githubLink === args.githubLink;
+
+    if (isUnchanged) {
+      throw new Error("No changes detected");
     }
 
     await ctx.db.patch(args.id, {
