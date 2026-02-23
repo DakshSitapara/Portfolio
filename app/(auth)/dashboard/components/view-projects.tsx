@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { useGetProjects, useDeleteProject } from "../hooks/projects";
-import { ExternalLinkIcon, Github, PencilIcon, Trash2 } from "lucide-react";
 import Link from "next/link";
-import { Doc } from "@/convex/_generated/dataModel";
+import { ExternalLinkIcon, Github, PencilIcon, Trash2 } from "lucide-react";
+
+import { useGetProjects, useDeleteProject } from "../hooks/projects";
+
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -21,6 +22,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+
+import { Doc } from "@/convex/_generated/dataModel";
+
 interface ViewProjectsProps {
   onEdit: (project: Doc<"projects">) => void;
 }
@@ -29,6 +33,7 @@ interface DeleteProjectDialogProps {
   projectId: string;
   onDelete: (projectId: string) => void;
 }
+
 const DeleteProjectDialog = ({
   projectId,
   onDelete,
@@ -65,6 +70,7 @@ const DeleteProjectDialog = ({
     </AlertDialog>
   );
 };
+
 export const ViewProjects = ({ onEdit }: ViewProjectsProps) => {
   const projects = useGetProjects();
   const { deleteProject } = useDeleteProject();
